@@ -14,3 +14,4 @@ Citizen_Agents = pd.DataFrame({"Race": numpy.random.choice(Race_dist, 100, p=[0.
                                'Trust': numpy.random.randint(58, 72, size=100)})
 print(Citizen_Agents)
 
+
