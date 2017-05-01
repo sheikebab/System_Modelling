@@ -34,5 +34,14 @@ for i in range(100):
     Citizen_Agents['Policed On'] = Citizen_Agents['Policed On'] + numpy.random.choice(Policed_On, 100, p=[0.99, 0.01])
     Citizen_Agents['T+%d' % i] = numpy.full(100, 0, dtype=int)
     for j in range(100):
+        if i == 0:
+            if Citizen_Agents.Race[j] == 'Black':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(-1)
+            elif Citizen_Agents.Race[j] == 'White':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(1)
+            elif Citizen_Agents.Race[j] == 'Asian':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j]) * (-0.4)
+            else:
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(-0.8)
 
 
