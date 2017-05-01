@@ -15,8 +15,9 @@ Race_dist = ['White', "Black", 'Hispanic', 'Asian']
 #the trust value ranges between 58-72 and varies randomly
 Citizen_Agents = pd.DataFrame({"Race": numpy.random.choice(Race_dist, 100, p=[0.45, 0.25, .12, 0.18 ]),
                                'Criminality': numpy.random.randint(2, size=100),
-                               'Size of Social Network' : numpy.random.randint(2,20, size=100),
-                               'Trust': numpy.random.randint(58, 72, size=100)})
-print(Citizen_Agents)
+                               'Size of Social Network' : numpy.random.randint(2,15, size=100),
+                               'Policed On' : numpy.full(100, 0, dtype=int),
+                               'Initial Trust': numpy.random.randint(58, 72, size=100),
+                               'Final Trust': numpy.full(100, 0, dtype=int)})
 
 
