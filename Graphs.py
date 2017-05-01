@@ -20,5 +20,14 @@ Citizen_Agents = pd.DataFrame({"Race": numpy.random.choice(Race_dist, 100, p=[0.
                                'Initial Trust': numpy.random.randint(58, 72, size=100),
                                'Final Trust': numpy.full(100, 0, dtype=int)})
 # print(Citizen_Agents)
+Policed_On = [0,1]
+Mean_Social_Network = Citizen_Agents['Size of Social Network'].mean()
+# print Mean_Social_Network
+gamma = numpy.random.choice(range(1,2,8))
+Avg_Black_Trust = []
+Avg_White_Trust = []
+Avg_Asian_Trust = []
+Avg_Hispanic_Trust = []
+Community_Happiness = numpy.random.randint(0,4)
 
 
