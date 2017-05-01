@@ -52,5 +52,10 @@ for i in range(100):
                 Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j]) * (-0.3) + Community_Happiness
             else:
                 Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(-0.8)  + Community_Happiness
+    Citizen_Agents['Final Trust'] = Citizen_Agents['T+%d'%i]
+    Avg_Asian_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Asian']['T+%d'%i].mean())
+    Avg_Black_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Black']['T+%d'%i].mean())
+    Avg_Hispanic_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Hispanic']['T+%d'%i].mean())
+    Avg_White_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'White']['T+%d'%i].mean())
 
 
