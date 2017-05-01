@@ -19,5 +19,6 @@ Citizen_Agents = pd.DataFrame({"Race": numpy.random.choice(Race_dist, 100, p=[0.
                                'Policed On' : numpy.full(100, 0, dtype=int),
                                'Initial Trust': numpy.random.randint(58, 72, size=100),
                                'Final Trust': numpy.full(100, 0, dtype=int)})
+# print(Citizen_Agents)
 
 
