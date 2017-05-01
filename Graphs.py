@@ -43,5 +43,14 @@ for i in range(100):
                 Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j]) * (-0.4)
             else:
                 Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(-0.8)
+        else:
+            if Citizen_Agents.Race[j] == 'Black':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(-1)
+            elif Citizen_Agents.Race[j] == 'White':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(1) + Community_Happiness
+            elif Citizen_Agents.Race[j] == 'Asian':
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j]) * (-0.3) + Community_Happiness
+            else:
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(-0.8)  + Community_Happiness
 
 
