@@ -57,5 +57,20 @@ for i in range(100):
     Avg_Black_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Black']['T+%d'%i].mean())
     Avg_Hispanic_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Hispanic']['T+%d'%i].mean())
     Avg_White_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'White']['T+%d'%i].mean())
+# print(Citizen_Agents)
+
+
+# Plot Average trust for all races
+x = numpy.arange(100)
+plt.plot(x, Avg_Asian_Trust, color = 'red', linewidth=4.0)
+plt.plot(x, Avg_Black_Trust, color = 'black',  linewidth=4.0)
+plt.plot(x, Avg_Hispanic_Trust,  color = 'brown', linewidth=4.0)
+plt.plot(x, Avg_White_Trust,  color = 'orange',  linewidth=4.0)
+plt.legend(['Asian', 'Black', 'Hispanic', 'white'], loc = 'upper left')
+plt.xticks(numpy.arange(0, 100, 5.0))
+plt.xlabel('Time Period')
+plt.ylabel('Average trust')
+# plt.show()
+
 
 
