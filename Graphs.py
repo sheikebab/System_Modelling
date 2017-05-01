@@ -29,5 +29,10 @@ Avg_White_Trust = []
 Avg_Asian_Trust = []
 Avg_Hispanic_Trust = []
 Community_Happiness = numpy.random.randint(0,4)
+for i in range(100):
+    print 'i', i
+    Citizen_Agents['Policed On'] = Citizen_Agents['Policed On'] + numpy.random.choice(Policed_On, 100, p=[0.99, 0.01])
+    Citizen_Agents['T+%d' % i] = numpy.full(100, 0, dtype=int)
+    for j in range(100):
 
 
