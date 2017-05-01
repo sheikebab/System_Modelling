@@ -1,5 +1,10 @@
 import pandas as pd
 import numpy
+import matplotlib.pyplot as plt
+
+plt.rc('font', family='serif', size=40)
+
+pd.set_option('display.width', 1000)
 
 #Array of Race to be chosen from while creating agents
 Race_dist = ['White', "Black", 'Hispanic', 'Asian']
