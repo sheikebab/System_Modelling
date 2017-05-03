@@ -72,7 +72,7 @@ for i in range(90):
 # Avg_Hispanic_Trust_norm = ((((i - min(Avg_Hispanic_Trust)) / (max(Avg_Hispanic_Trust) - min(Avg_Hispanic_Trust)) ) * (100 - 0) + 0 )for i in Avg_Hispanic_Trust)
 # Avg_White_Trust_norm = ((((i - min(Avg_White_Trust)) / (max(Avg_White_Trust) - min(Avg_White_Trust)) ) * (100 - 0) + 0 )for i in Avg_White_Trust)
 # Plot Average trust for all races
-x = numpy.arange(100)
+Community_Average = numpy.full(90, (sum(Avg_Asian_Trust)/len(Avg_Asian_Trust) + sum(Avg_Black_Trust)/len(Avg_Black_Trust) +sum(Avg_Hispanic_Trust)/len(Avg_Hispanic_Trust) + sum(Avg_White_Trust)/len(Avg_White_Trust))/4)
 x = numpy.arange(90)
 plt.plot(x, Avg_Asian_Trust, color = 'red', linewidth=4.0)
 plt.plot(x, Avg_Black_Trust, color = 'black',  linewidth=4.0)
