@@ -39,31 +39,31 @@ for i in range(90):
     Citizen_Agents['Policed On'] = Citizen_Agents['Policed On'] + numpy.random.choice(Policed_On, 100, p=[0.998, 0.002])
     Citizen_Agents['T+%d' % i] = numpy.full(100, 0, dtype=int)
     for j in range(100):
+        if Citizen_Agents.Race[j] == 'Black':
+            Citizen_Agents.loc[j, 'Policed On'] = Citizen_Agents['Policed On'][j] + numpy.random.choice([0,1], p = (0.996, 0.004))
         if i == 0:
             if Citizen_Agents.Race[j] == 'Black':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(-1)
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j]
             elif Citizen_Agents.Race[j] == 'White':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(1)
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j]
             elif Citizen_Agents.Race[j] == 'Asian':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j]) * (-0.4)
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j]
             else:
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j] + (Citizen_Agents['Policed On'][j])*(-0.8)
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['Initial Trust'][j]
         else:
             if Citizen_Agents.Race[j] == 'Black':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(-1)
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] - Citizen_Agents['Policed On'][j]*alpha + Community_Happiness - Citizen_Agents['Size of Social Network'][j]*beta
             elif Citizen_Agents.Race[j] == 'White':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(1) + Community_Happiness
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] - Citizen_Agents['Policed On'][j]*alpha + Community_Happiness - Citizen_Agents['Size of Social Network'][j]*beta + zeta
             elif Citizen_Agents.Race[j] == 'Asian':
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j]) * (-0.3) + Community_Happiness
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] - Citizen_Agents['Policed On'][j]*alpha + Community_Happiness - Citizen_Agents['Size of Social Network'][j]*beta
             else:
-                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] + (Citizen_Agents['Policed On'][j])*(-0.8)  + Community_Happiness
+                Citizen_Agents.loc[j, 'T+%d' %i] = Citizen_Agents['T+%d' %(i-1)][j] - Citizen_Agents['Policed On'][j]*alpha + Community_Happiness - Citizen_Agents['Size of Social Network'][j]*beta
     Citizen_Agents['Final Trust'] = Citizen_Agents['T+%d'%i]
     Avg_Asian_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Asian']['T+%d'%i].mean())
     Avg_Black_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Black']['T+%d'%i].mean())
     Avg_Hispanic_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Hispanic']['T+%d'%i].mean())
     Avg_White_Trust.append(Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'White']['T+%d'%i].mean())
-# print(Citizen_Agents)
-
 
 # Plot Average trust for all races
 x = numpy.arange(100)
@@ -76,5 +76,4 @@ plt.xticks(numpy.arange(0, 100, 5.0))
 plt.xlabel('Time Period')
 plt.ylabel('Average trust')
 # plt.show()
-
 
