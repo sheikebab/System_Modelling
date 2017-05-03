@@ -1,11 +1,10 @@
 import pandas as pd
 import numpy
 import matplotlib.pyplot as plt
-
+import math
 plt.rc('font', family='serif', size=40)
-
 pd.set_option('display.width', 1000)
-
+numpy.random.seed(6845)
 #Array of Race to be chosen from while creating agents
 Race_dist = ['White', "Black", 'Hispanic', 'Asian']
 
@@ -28,10 +27,16 @@ Avg_Black_Trust = []
 Avg_White_Trust = []
 Avg_Asian_Trust = []
 Avg_Hispanic_Trust = []
-Community_Happiness = numpy.random.randint(0,4)
-for i in range(100):
+Daily_Avg = []
+for i in range(90):
     print 'i', i
-    Citizen_Agents['Policed On'] = Citizen_Agents['Policed On'] + numpy.random.choice(Policed_On, 100, p=[0.99, 0.01])
+    zeta = numpy.random.rand(1)
+    Community_Happiness = numpy.random.randint(0, 4)
+    # Community_Happiness = Citizen_Agents['Policed On'].sum()*numpy.random.rand(1)
+    alpha = numpy.random.rand(1)
+    # beta = numpy.random.rand(1)
+    beta = 0.2
+    Citizen_Agents['Policed On'] = Citizen_Agents['Policed On'] + numpy.random.choice(Policed_On, 100, p=[0.998, 0.002])
     Citizen_Agents['T+%d' % i] = numpy.full(100, 0, dtype=int)
     for j in range(100):
         if i == 0:
@@ -71,6 +76,5 @@ plt.xticks(numpy.arange(0, 100, 5.0))
 plt.xlabel('Time Period')
 plt.ylabel('Average trust')
 # plt.show()
-
 
 
