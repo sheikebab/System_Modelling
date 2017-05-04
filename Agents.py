@@ -45,3 +45,40 @@ class Agent_Generation:
             agent_df['Policed On'] =agent_df['Policed On'] + numpy.random.choice([0,1], self.number_of_agents,
                                                                                               p=[0.998, 0.002])
             agent_df['T+%d' % i] = numpy.full(self.number_of_agents, 0, dtype=int)
+            #initialising for loop to go through each agent in dataframe
+            for j in range(self.number_of_agents):
+                #Simulated bias of cops towards black and hispanic peopel
+                if agent_df.Race[j] == 'Black' or agent_df.Race[j] == 'Hispanic':
+                    agent_df.loc[j, 'Policed On'] = agent_df.loc[j, 'Policed On'] + numpy.random.choice([0,1],
+                                                                                                    p = (0.996, 0.004))
+                #Initialed trust in time period T+0
+                if i == 0:
+                    if agent_df.Race[j] == 'Black':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['Initial Trust'][j]
+                    elif agent_df.Race[j] == 'White':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['Initial Trust'][j]
+                    elif agent_df.Race[j] == 'Asian':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['Initial Trust'][j]
+                    else:
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['Initial Trust'][j]
+                else:
+                    if agent_df.Race[j] == 'Black':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['T+%d' % (i - 1)][j] - \
+                                                            agent_df['Policed On'][
+                                                                j] * alpha + community_happiness - \
+                                                            agent_df['Size of Social Network'][j] * beta
+                    elif agent_df.Race[j] == 'White':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['T+%d' % (i - 1)][j] - \
+                                                            agent_df['Policed On'][
+                                                                j] * alpha + community_happiness - \
+                                                            agent_df['Size of Social Network'][j] * beta + zeta
+                    elif agent_df.Race[j] == 'Asian':
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['T+%d' % (i - 1)][j] - \
+                                                            agent_df['Policed On'][
+                                                                j] * alpha + community_happiness - \
+                                                            agent_df['Size of Social Network'][j] * beta
+                    else:
+                        agent_df.loc[j, 'T+%d' % i] = agent_df['T+%d' % (i - 1)][j] - \
+                                                            agent_df['Policed On'][
+                                                                j] * alpha + community_happiness - \
+                                                            agent_df['Size of Social Network'][j] * beta
