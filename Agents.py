@@ -83,3 +83,8 @@ class Agent_Generation:
                                                                 j] * alpha + community_happiness - \
                                                             agent_df['Size of Social Network'][j] * beta
             agent_df['Final Trust'] = agent_df['T+%d' % i]
+            self.avg_asian_trust.append(agent_df.ix[lambda s: agent_df.Race == 'Asian']['T+%d' % i].mean())
+            self.avg_black_trust.append(agent_df.ix[lambda s: agent_df.Race == 'Black']['T+%d' % i].mean())
+            self.avg_hispanic_trust.append(agent_df.ix[lambda s: agent_df.Race == 'Hispanic']['T+%d' % i].mean())
+            self.avg_white_trust.append(agent_df.ix[lambda s: agent_df.Race == 'White']['T+%d' % i].mean())
+            self.daily_avg.append(agent_df['T+%d' % i].mean())
