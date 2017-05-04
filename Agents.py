@@ -28,8 +28,16 @@ class Agent_Generation:
 
         return agents
 
-    def Update_Trust(self, agent_df, time_period):
+    def Update_Trust_Citizens(self, agent_df, time_period):
+        #Initialise lists for average trust
+        self.avg_black_trust = []
+        self.avg_white_trust = []
+        self.avg_asian_trust = []
+        self.avg_hispanic_trust = []
+        self.daily_avg = []
+        #Initialising for loop to simulate timeline of defined time period
         for i in range(time_period):
+            #the initialised variables change in every time period, affect on community varies daily
             zeta = numpy.random.rand(1)
             community_happiness = numpy.random.randint(0, 4)
             alpha = numpy.random.rand(1)
