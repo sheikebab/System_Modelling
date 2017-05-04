@@ -28,8 +28,8 @@ Avg_White_Trust = []
 Avg_Asian_Trust = []
 Avg_Hispanic_Trust = []
 Daily_Avg = []
-for i in range(90):
-    print 'i', i
+for i in range(365):
+    print i
     zeta = numpy.random.rand(1)
     Community_Happiness = numpy.random.randint(0, 4)
     # Community_Happiness = Citizen_Agents['Policed On'].sum()*numpy.random.rand(1)
@@ -72,8 +72,8 @@ for i in range(90):
 # Avg_Hispanic_Trust_norm = ((((i - min(Avg_Hispanic_Trust)) / (max(Avg_Hispanic_Trust) - min(Avg_Hispanic_Trust)) ) * (100 - 0) + 0 )for i in Avg_Hispanic_Trust)
 # Avg_White_Trust_norm = ((((i - min(Avg_White_Trust)) / (max(Avg_White_Trust) - min(Avg_White_Trust)) ) * (100 - 0) + 0 )for i in Avg_White_Trust)
 # Plot Average trust for all races
-Community_Average = numpy.full(90, (sum(Avg_Asian_Trust)/len(Avg_Asian_Trust) + sum(Avg_Black_Trust)/len(Avg_Black_Trust) +sum(Avg_Hispanic_Trust)/len(Avg_Hispanic_Trust) + sum(Avg_White_Trust)/len(Avg_White_Trust))/4)
-x = numpy.arange(90)
+Community_Average = numpy.full(365, (sum(Avg_Asian_Trust)/len(Avg_Asian_Trust) + sum(Avg_Black_Trust)/len(Avg_Black_Trust) +sum(Avg_Hispanic_Trust)/len(Avg_Hispanic_Trust) + sum(Avg_White_Trust)/len(Avg_White_Trust))/4)
+x = numpy.arange(365)
 plt.plot(x, Avg_Asian_Trust, color = 'red', linewidth=4.0)
 plt.plot(x, Avg_Black_Trust, color = 'black',  linewidth=4.0)
 plt.plot(x, Avg_Hispanic_Trust,  color = 'brown', linewidth=4.0)
@@ -82,12 +82,12 @@ plt.plot(x, Community_Average, color = 'purple', linewidth = 4.0)
 plt.plot(x, Daily_Avg, color = 'pink', linewidth = 6.0)
 plt.legend(['Asian', 'Black', 'Hispanic', 'White', 'Community Average', 'Daily Community Average'], loc = 'upper left', prop = {'size' :24})
 plt.annotate('%d'%Community_Average[0], xy=(85, Community_Average[0]+1))
-plt.xticks(numpy.arange(0, 90, 5.0))
+plt.xticks(numpy.arange(0, 365, 5.0))
 plt.title('Daily Average, sorted by Race')
 # plt.yticks(numpy.arange(0, 100, 5.0))
 plt.xlabel('Time Period')
 plt.ylabel('Average trust')
-# plt.show()
+plt.show()
 plt.close()
 # Create sliced dataframes to create individual distributions
 Citizen_Agents_Black = (Citizen_Agents.ix[lambda s: Citizen_Agents.Race == 'Black'])
