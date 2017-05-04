@@ -82,3 +82,4 @@ class Agent_Generation:
                                                             agent_df['Policed On'][
                                                                 j] * alpha + community_happiness - \
                                                             agent_df['Size of Social Network'][j] * beta
+            agent_df['Final Trust'] = agent_df['T+%d' % i]
